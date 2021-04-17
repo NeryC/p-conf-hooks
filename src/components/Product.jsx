@@ -3,7 +3,10 @@ import React from 'react';
 function Product({ product, handleAddToCart }) {
   return (
     <div className="Products-item">
-      <img src={product.image} alt={product.title} />
+      <img
+        src={`https://localhost:1337${product.image[0].url}`}
+        alt={product.title}
+      />
       <div className="Product-item-info">
         <h2>
           {product.title}

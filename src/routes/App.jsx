@@ -13,21 +13,32 @@ import useInitialState from '../hooks/useInitialState';
 
 const App = () => {
   const initiaState = useInitialState();
+  const isEmpty = Object.keys(initiaState.state).length;
   return (
-    <AppContext.Provider value={initiaState}>
-      <BrowserRouter>
-        <Layout>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/checkout" component={Checkout} />
-            <Route exact path="/checkout/information" component={Information} />
-            <Route exact path="/checkout/payment" component={Payment} />
-            <Route exact path="/checkout/success" component={Success} />
-            <Route component={NotFound} />
-          </Switch>
-        </Layout>
-      </BrowserRouter>
-    </AppContext.Provider>
+    <>
+      {isEmpty > 0 ? (
+        <AppContext.Provider value={initiaState}>
+          <BrowserRouter>
+            <Layout>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/checkout" component={Checkout} />
+                <Route
+                  exact
+                  path="/checkout/information"
+                  component={Information}
+                />
+                <Route exact path="/checkout/payment" component={Payment} />
+                <Route exact path="/checkout/success" component={Success} />
+                <Route component={NotFound} />
+              </Switch>
+            </Layout>
+          </BrowserRouter>
+        </AppContext.Provider>
+      ) : (
+        <h1>Cargando</h1>
+      )}
+    </>
   );
 };
 
